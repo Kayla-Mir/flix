@@ -36,6 +36,12 @@ $secondary: $dark-gray;
 
 // Custom CSS
 
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .content {
   @extend .container;
 }
@@ -365,9 +371,16 @@ footer {
   background: $black;
   color: $light-gray;
   text-align: center;
-  margin-top: 3rem;
+  margin-top: auto;
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+
+.review-post {
+  margin-bottom: 3rem;
+  h1 {
+    text-align: center;
+  }
 }
 
 // Admin Section
@@ -422,6 +435,8 @@ aside {
 form:not([class="button_to"]) {
   max-width: 400px;
   margin-top: 1.5rem;
+  margin: auto;
+  text-align: left;
 
   label {
     font-size: 1.1rem;
@@ -514,6 +529,10 @@ form:not([class="button_to"]) {
 
   &.alert {
     @extend .alert-danger;
+  }
+
+  &.danger {
+    background-color: #ffa515a1
   }
 }
 
