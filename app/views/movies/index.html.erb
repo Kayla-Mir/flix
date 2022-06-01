@@ -1,3 +1,19 @@
+<% if params[:filter] %>
+  <h4 style="margin-left:75px;"><%= "#{params[:filter].capitalize.singularize} Movies:" %></h4>
+<% end %>
+<section style="text-align:right">
+  <label for="cars">Filter by:</label>
+
+  <select name="filters" id="filters" onchange="document.location.href=this.value">
+    <option selected value="">Select One</option>
+    <option value="/movies">All</option>
+    <option value="/movies/filter/recent">Recent</option>
+    <option value="/movies/filter/released">Released</option>
+    <option value="/movies/filter/upcoming">Upcoming</option>
+    <option value="/movies/filter/hits">Hits</option>
+    <option value="/movies/filter/flops">Flops</option>
+  </select>
+</section>
 <% @movies.each do |movie| %>
   <section class="movie">
     <div class="image">
@@ -20,6 +36,8 @@
   </section>
 <% end %>
 
-<section class="admin">
-  <%= link_to 'Add New Movie', new_movie_path, class: 'button' %>
-</section>
+<% if current_user_admin? %>
+  <section class="admin">
+    <%= link_to 'Add New Movie', new_movie_path, class: 'button' %>
+  </section>
+<% end %>

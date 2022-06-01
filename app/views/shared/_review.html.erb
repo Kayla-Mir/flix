@@ -1,9 +1,6 @@
 <%= form_with(model: [@movie, @review], local: true) do |f| %>
   <%= render 'shared/errors', object: @review %>
 
-  <%= f.label :name %>
-  <%= f.text_field :name, autofocus: true %>
-
   <%= f.label :stars %>
   <% Review::STARS.each do |star| %>
     <span class="star">
@@ -15,9 +12,5 @@
   <%= f.label :comment %>
   <%= f.text_area :comment, placeholder: 'What did you think?' %>
 
-  <% if local_assigns[:edit] %>
-    <%= f.submit 'Update Review' %>
-  <% else %>
-    <%= f.submit 'Post Review' %>
-  <% end %>
+  <%= f.submit %>
 <% end %>

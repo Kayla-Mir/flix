@@ -1,0 +1,17 @@
+<h1 style="text-align:center">Sign In</h1>
+
+<%= form_with(url: session_path, local: true) do |f| %>
+  <%= f.label :email_or_username %>
+  <%= f.text_field :email_or_username, autofocus: true, required: true%>
+
+  <%= f.label :password %>
+  <%= f.password_field :password, required: true%>
+
+  <%= f.submit 'Sign In' %>
+<% end %>
+
+<p style="text-align:center; margin-top:20px">
+  No account yet? <%= link_to 'Sign Up!', signup_path %>
+  <%= link_to image_tag('edit-image.png', alt: 'an icon for editing your image'), signup_path %>
+</p>
+

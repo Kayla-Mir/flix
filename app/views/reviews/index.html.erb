@@ -1,10 +1,12 @@
 <h1>Reviews for <%= link_to @movie.title, @movie %></h1>
+
 <ul class="reviews">
   <% @reviews.each do |review| %>
     <li>
       <%= render "shared/stars", percent: review.stars_as_percent %>
-      <p>
-        <%= review.name %>
+      <p style="margin-top:.75rem">
+        <%= profile_image(review.user, 35) %>
+        <%= link_to review.user.name, review.user %>
         <span class="date">
           <%= time_ago_in_words(review.created_at) %> ago
         </span>
@@ -12,8 +14,35 @@
       <p>
         <%= review.comment %>
       </p>
-      <%=link_to "Edit Review", edit_movie_review_path(@movie, review), class: 'btn btn-outline-success' %>
-      <%=link_to "Delete Review", movie_review_path(@movie, review), class: 'btn btn-outline-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% if current_user?(review.user) %>
+        <%= link_to "Edit Review", 
+          edit_movie_review_path(@movie, review), 
+          class: 'btn btn-outline-success'
+        %>
+        <%=link_to "Delete Review",
+          movie_review_path(@movie, review),
+          class: 'btn btn-outline-danger',
+          method: :delete,
+          data: { confirm: 'Are you sure?' }
+        %>
+      <% end %>
+      <% if current_user_admin? && !current_user?(review.user) %>
+        <%=link_to "Delete Review",
+          movie_review_path(@movie, review),
+          class: 'btn btn-outline-danger',
+          method: :delete,
+          data: { confirm: 'Are you sure?' }
+        %>
+      <% end %>
     </li>
   <% end %>
 </ul>
+
+<% if current_user %>
+  <section class='review-post'>
+    <h1>Post Review</h1>
+    <div class="form">
+      <%= render 'shared/review', movie: @movie, review: @review = Review.new %>
+    </div>
+  </section>
+<% end %>

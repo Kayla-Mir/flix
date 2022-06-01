@@ -44,6 +44,7 @@ body {
 
 .content {
   @extend .container;
+  margin-bottom: 1.5rem
 }
 
 // Header and Nav
@@ -175,6 +176,12 @@ section.movie-details {
     @extend .col-md-7, .text-left;
   }
 
+  .movie-details-profile-image {
+    margin-top: 0.5rem;
+    width: 25px;
+    box-shadow: $box-shadow;
+  }
+
   aside {
     @extend .col-md-2;
   }
@@ -211,6 +218,7 @@ section.movie-details {
 
     form {
       @extend .input-group-prepend;
+      // margin-bottom: 1.5rem
     }
 
     .count {
@@ -251,6 +259,50 @@ section.movie-details {
     .star-rating {
       margin-bottom: 0.5rem;
     }
+  }
+}
+
+// genres show page
+
+section.movie-details-genre {
+  @extend .row;
+  display: inline-block;
+  margin-left: 0;
+  margin-right: 0;
+
+  .image-genre {
+    @extend .col-md-3, .text-left;
+  }
+
+  aside {
+    @extend .col-md-2;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.35rem;
+    color: $secondary-text-color;
+  }
+
+  h3 {
+    margin-top: 1.5rem;
+    font-size: 1.25rem;
+    color: $secondary-text-color;
+    font-weight: 300;
+  }
+
+  p {
+    margin-top: 1rem;
+    font-size: 1.15em;
+  }
+
+  img {
+    margin-top: 0.5rem;
+    width: 150px;
+    box-shadow: $box-shadow;
   }
 }
 
@@ -348,6 +400,8 @@ ul.reviews {
 
   li {
     margin: 1em 0 2.5rem 0;
+    padding-bottom: 2rem;
+    border-bottom: 1px dotted #c2c2c2;
 
     span {
       &.date {
@@ -377,6 +431,7 @@ footer {
 }
 
 .review-post {
+  margin-bottom: 3rem;
   margin-bottom: 3rem;
   h1 {
     text-align: center;

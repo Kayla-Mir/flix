@@ -1,14 +1,16 @@
 class Review < ApplicationRecord
   belongs_to :movie
+  belongs_to :user
 
-  validates :name, presence: true
-  validates :comment, length: { minimum: 4 }
+  validates :comment, length: {minimum: 4}
+
+  scope :past_n_days, ->(days) { where("created_at >= ?", days.days.ago) }
 
   STARS = [1, 2, 3, 4, 5].freeze
 
   validates :stars, inclusion: {
     in: STARS,
-    message: 'Must be between 1 and 5.'
+    message: "Must be between 1 and 5."
   }
 
   def stars_as_percent

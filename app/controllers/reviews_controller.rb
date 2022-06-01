@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+  before_action :require_signin, except: [:index]
   before_action :set_movie
 
   def index
@@ -11,8 +12,9 @@ class ReviewsController < ApplicationController
 
   def create
     @review = @movie.reviews.new(review_params)
+    @review.user = current_user
     if @review.save
-      redirect_to movie_reviews_path(@movie), notice: 'Thanks for your review!'
+      redirect_to movie_reviews_path(@movie), notice: "Thanks for your review!"
     else
       render :new
     end
@@ -27,7 +29,7 @@ class ReviewsController < ApplicationController
     @movie = Movie.find(params[:movie_id])
     @review = @movie.reviews.find(params[:id])
     if @review.update(review_params)
-      redirect_to @movie, notice: 'Review was successfully updated!'
+      redirect_to @movie, notice: "Review was successfully updated!"
     else
       render :edit
     end
@@ -37,16 +39,16 @@ class ReviewsController < ApplicationController
     @movie = Movie.find(params[:movie_id])
     @review = @movie.reviews.find(params[:id])
     @review.destroy
-    redirect_to movie_reviews_path, notice: 'Review Deleted'
+    redirect_to movie_reviews_path, notice: "Review Deleted"
   end
 
   private
 
   def review_params
-    params.require(:review).permit(:name, :stars, :comment)
+    params.require(:review).permit(:stars, :comment)
   end
 
   def set_movie
-    @movie = Movie.find(params[:movie_id])
+    @movie = Movie.find_by!(slug: params[:movie_id])
   end
 end
