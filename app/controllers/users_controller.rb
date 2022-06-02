@@ -2,7 +2,6 @@ class UsersController < ApplicationController
   before_action :require_signin, except: [:new, :create]
   before_action :require_correct_user, only: [:edit, :update]
   before_action :require_admin, only: [:destroy]
-  after_action :set_admin, only: [:create]
 
   def index
     @users = User.not_admins
@@ -50,14 +49,6 @@ class UsersController < ApplicationController
   def require_correct_user
     @user = User.find(params[:id])
     redirect_to root_url unless current_user?(@user)
-  end
-
-  def set_admin
-    @user = User.find(session[:user_id])
-    if @user.id == 1
-      @user.admin = true
-      @user.save
-    end
   end
 
   def user_params
