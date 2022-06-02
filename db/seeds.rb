@@ -172,5 +172,18 @@ Movie.create!([
     director: "Patty Jenkins",
     duration: "141 min",
     image_file_name: "wonder-woman.png"
+  },
+  {
+    title: "Doctor Strange in the Multiverse of Madness",
+    description:
+    %(
+      America Chavez and a version of Stephen Strange are chased by a demon in the space between universes while searching for the Book of Vishanti. Strange is killed and Chavez accidentally creates a portal that transports herself and Strange's corpse to Earth-616, where that universe's version of Strange rescues Chavez from another demon with help from the Sorcerer Supreme, Wong. Chavez explains that the beings are hunting her because she has the power to travel through the multiverse.
+    ).squish,
+    released_on: "2022-06-24",
+    rating: "PG-13",
+    total_gross: 810_900_000,
+    director: "Kevin Feige",
+    duration: "126 min",
+    image_file_name: "https://m.media-amazon.com/images/M/MV5BNWM0ZGJlMzMtZmYwMi00NzI3LTgzMzMtNjMzNjliNDRmZmFlXkEyXkFqcGdeQXVyMTM1MTE1NDMx._V1_.jpg"
   }
 ])
